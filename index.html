@@ -1404,7 +1404,7 @@ Indonesia-Pop</span><span class="caption-zh" lang="zh-CN"></span></span></button
     analyser = null;
     spectrum = null;
     dialog.classList.add('audio-fallback');
-    audio.controls = true;
+    audio.controls = false;
     statusText.textContent = message;
   };
   const ensureContext = () => {
@@ -1481,7 +1481,7 @@ Indonesia-Pop</span><span class="caption-zh" lang="zh-CN"></span></span></button
     const replacement = oldAudio.cloneNode(true);
     replacement.removeAttribute('src');
     clearAudioIdentity(replacement);
-    replacement.controls = true;
+    replacement.controls = false;
     oldAudio.replaceWith(replacement);
     audio = replacement;
     let activePlayEpoch = expectedPlayEpoch;
@@ -1722,9 +1722,9 @@ Indonesia-Pop</span><span class="caption-zh" lang="zh-CN"></span></span></button
     invalidatePlayIntent();
     if (!audio.paused) correctivePause(audio);
     setState(states.ERROR);
-    statusText.textContent = 'Audio unavailable. Try the controls below.';
+    statusText.textContent = 'Audio unavailable.';
     dialog.classList.add('audio-fallback');
-    audio.controls = true;
+    audio.controls = false;
     updatePlayButton();
     stopAnimation();
   };
@@ -1753,7 +1753,7 @@ Indonesia-Pop</span><span class="caption-zh" lang="zh-CN"></span></span></button
       ? 'Trying backup audio source…'
       : 'Connection is slow — switching audio source…';
     dialog.classList.toggle('audio-fallback', audioFallbackLocked);
-    audio.controls = audioFallbackLocked;
+    audio.controls = false;
     loadAudioSource(fallbackUrl);
     updatePlayButton();
     if (resumeAfterFallback) requestPlay(token);
@@ -1951,7 +1951,7 @@ Indonesia-Pop</span><span class="caption-zh" lang="zh-CN"></span></span></button
     resetScrollPositions();
     dialog.classList.remove('instrumental', 'cover-mode', 'is-playing');
     dialog.classList.toggle('audio-fallback', audioFallbackLocked);
-    audio.controls = audioFallbackLocked;
+    audio.controls = false;
   };
   const scheduleLayout = (expectedToken, resetScroll = false) => {
     if (layoutRaf || document.hidden || !dialog.open || expectedToken !== token) return;
@@ -2126,7 +2126,7 @@ Indonesia-Pop</span><span class="caption-zh" lang="zh-CN"></span></span></button
     heights = new Float32Array(30);
     dialog.classList.remove('is-playing');
     dialog.classList.toggle('audio-fallback', audioFallbackLocked);
-    audio.controls = audioFallbackLocked;
+    audio.controls = false;
     updateCoverRoleUi();
     const resumePosition = Math.max(0, Math.min(activeDuration, position[role] || 0));
     const resumeEnded = endedPosition[role];
